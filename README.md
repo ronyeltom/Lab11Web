@@ -1,1 +1,427 @@
 # Lab11Web
+
+| Nama      | RONY ELTOM ATIBAMAN |
+| --------- | ------------------- |
+| NIM       |     312010022       |
+| Kelas     |     TI.20.D.1       |
+
+### 1. Buat folder baru dengan nama lab11_php_ci pada docroot webserver (htdocs)
+
+![1](https://user-images.githubusercontent.com/101688124/178602547-a3f2c70f-f0fb-494d-8e94-d429ab4f0cb3.png)
+
+### 2. Untuk mengaktifkan ekstentsi tersebut, melalu XAMPP Control Panel, pada bagian Apache klik Config -> PHP.ini
+
+![2](https://user-images.githubusercontent.com/101688124/178602558-eff250db-5f5e-42ce-aefa-270af01c655d.png)
+
+
+### 3. Pada bagian extention, hilangkan tanda ; (titik koma) pada ekstensi yang akan diaktifkan. Kemudian simpan kembali filenya dan restart Apache web server.
+
+![3](https://user-images.githubusercontent.com/101688124/178602562-be8218d7-c5c6-4f65-8213-80f6185d9fb1.png)
+
+### 4. Instalasi Codeigniter 4
+
+Untuk melakukan instalasi Codeigniter 4 dapat dilakukan dengan dua cara, yaitu cara manual dan menggunakan composer. Pada praktikum ini kita menggunakan cara manual.
+
+- Unduh Codeigniter dari website https://codeigniter.com/download
+- Extrak file zip Codeigniter ke direktori htdocs/lab11_php_ci.
+- Ubah nama direktory framework-4.x.xx menjadi ci4.
+- Buka browser dengan alamat http://localhost/lab11_php_ci/ci4/public/
+
+![4](https://user-images.githubusercontent.com/101688124/178602564-2f8ad2c0-dd77-440c-aea3-f055df9e9414.png)
+
+### 5. Menjalankan CLI (Command Line Interface)
+
+![5](https://user-images.githubusercontent.com/101688124/178602568-fea39f64-9594-42de-ae07-30fe0b2c4015.png)
+
+
+### 6. Mengaktifkan Mode Debugging
+
+Codeigniter 4 menyediakan fitur debugging untuk memudahkan developer untuk mengetahui pesan error apabila terjadi kesalahan dalam membuat kode program. Secara default fitur ini belum aktif. Ketika terjadi error pada aplikasi akan ditampilkan pesan kesalahan seperti berikut.
+
+![6](https://user-images.githubusercontent.com/101688124/178602571-b6dae36f-11ea-4150-aad7-42ca5b7cf5b0.png)
+
+- Semua jenis error akan ditampilkan sama. Untuk memudahkan mengetahui jenis errornya, maka perlu diaktifkan mode debugging dengan mengubah nilai konfigurasi pada environment variable CI_ENVIRONMENT menjadi development. Kemudian mengubah nama file env menjadi .env lalu setelah itu buka file tersebut dan ubah nilai variable CI_ENVORNMENT menjadi development. Setelah itu hapus tanda tagar (#) pada awal baris CI_ENVIRONMENT, ubah kode pada file app/Controller/Home.php hilangkan titik koma (;) pada akhir kode seperti berikut.
+
+![7](https://user-images.githubusercontent.com/101688124/178602572-f4db04da-f2c5-4a5c-9a2f-620847896c2a.png)
+
+![8](https://user-images.githubusercontent.com/101688124/178602573-575c1ead-cfa7-41de-9524-a0fa644d27ff.png)
+
+
+- Maka hasilnya akan terjadi error seperti berikut.
+
+![8 1](https://user-images.githubusercontent.com/101688124/178603467-5838b166-5a33-41bb-baf4-11a8c60f3a18.png)
+
+
+### 7. Routing dan Controller
+
+Router terletak pada file app/config/Routes.php. Pada file tersebut kita dapat mendefinisikan route untuk aplikasi yang kita buat.
+Contoh: ```$routes->get('/', 'Home::index'); Kode tersebut akan mengarahkan rute untuk halaman home.
+
+### 8. Membuat Route Baru.
+![9](https://user-images.githubusercontent.com/101688124/178602574-aa12a085-b3ed-4444-882e-c94e1971df16.png)
+
+
+- Untuk mengetahui route yang ditambahkan sudah benar, buka CLI dan jalankan perintah berikut. php spark routes
+
+![10](https://user-images.githubusercontent.com/101688124/178602576-69cdc5ba-b939-41aa-af4a-b331d5b00aec.png)
+
+
+- Selanjutnya coba akses route yang telah dibuat dengan mengakses alamat url http://localhost:8080/about
+
+![image](https://user-images.githubusercontent.com/101658076/173853219-99e9dfec-6c27-4ce3-8745-b03c23230949.png)
+
+Ketika diakses akan mucul tampilan error 404 file not found, itu artinya file/page tersebut tidak ada. Untuk dapat mengakses halaman tersebut, harus dibuat terlebih dahulu Contoller yang sesuai dengan routing yang dibuat yaitu Contoller Page.
+
+### 9. Membuat Controller
+
+Selanjutnya adalah membuat Controller Page. Buat file baru dengan nama page.php pada direktori Controller kemudian isi kodenya seperti berikut.
+
+![image](https://user-images.githubusercontent.com/101658076/173853694-94006532-8372-480b-8eb2-2dcc1e83e0a7.png)
+
+- Selanjutnya refresh Kembali browser, maka akan ditampilkan hasilnya yaitu halaman sudah dapat diakses.
+
+![image](https://user-images.githubusercontent.com/101658076/173853898-c76c97d3-18a6-4f68-84dd-cee805e2374c.png)
+
+### 10. Auto Routing
+
+Secara default fitur autoroute pada Codeiginiter sudah aktif. Untuk mengubah status autoroute dapat mengubah nilai variabelnya. Untuk menonaktifkan ubah nilai true menjadi false.
+
+Tambahkan method baru pada Controller Page seperti berikut
+
+![image](https://user-images.githubusercontent.com/101658076/173854100-e6ea7818-4724-45d2-8ea3-29fb0b30296f.png)
+
+- Method ini belum ada pada routing, sehingga cara mengaksesnya dengan menggunakan alamat: http://localhost:8080/page/tos
+
+![image](https://user-images.githubusercontent.com/101658076/173854294-a0f55a6f-c3c9-48ad-8c75-53f71113e91d.png)
+
+### 11. Membuat View
+
+Selanjutnya adalam membuat view untuk tampilan web agar lebih menarik. Buat file baru dengan nama about.php pada direktori view (app/view/about.php) kemudian isi kodenya seperti berikut.
+
+![image](https://user-images.githubusercontent.com/101658076/173855451-c76d7ac5-891b-4fa1-b70e-bc5d5c5b8ffd.png)
+
+- Ubah method about pada class Controller Page menjadi seperti berikut:
+
+![image](https://user-images.githubusercontent.com/101658076/173860665-b9e28b2a-a375-4919-913c-8b289de49995.png)
+
+- Kemudian lakukan refresh pada halaman tersebut.
+
+![image](https://user-images.githubusercontent.com/101658076/173860869-8d345288-c6db-4eb3-aa95-943d0144661c.png)
+
+### 12. Membuat Layout Web dengan CSS
+
+Pada dasarnya layout web dengan css dapat diimplamentasikan dengan mudah pada codeigniter. Yang perlu diketahui adalah, pada Codeigniter 4 file yang menyimpan asset css dan javascript terletak pada direktori public.
+
+Buat file css pada direktori public dengan nama style.css (copy file dari praktikum lab4_layout. Kita akan gunakan layout yang pernah dibuat pada praktikum 4.
+
+![image](https://user-images.githubusercontent.com/101658076/173861298-37d10ee0-b723-4bf2-b6d1-a501dc3e7ff9.png)
+
+ ### Kemudian buat folder template pada direktori view kemudian buat file header.php dan footer.php
+
+- File app/view/template/header.php
+
+![image](https://user-images.githubusercontent.com/101658076/173861535-a4629df7-0a6f-4451-a934-d7e778644fea.png)
+
+- File app/view/template/footer.php
+
+![image](https://user-images.githubusercontent.com/101658076/173861851-e0810c5f-55c4-4500-be8f-cefd69052fb8.png)
+
+### Kemudian ubah file app/view/about.php seperti berikut.
+
+![image](https://user-images.githubusercontent.com/101658076/173862184-2bce2306-c633-4f49-b154-701ccf6ef98a.png)
+
+- Selanjutnya refresh tampilan pada alamat http://localhost:8080/about
+
+![image](https://user-images.githubusercontent.com/101658076/173862425-eda7d13e-6656-41a7-937f-85d04a6713e3.png)
+
+### Pertanyaan dan Tugas !
+Lengkapi kode program untuk menu lainnya yang ada pada Controller Page, sehingga semua link pada navigasi header dapat menampilkan tampilan dengan layout yang sama.
+
+- About 
+
+![image](https://user-images.githubusercontent.com/101658076/173862746-12355701-a237-49ef-88e2-c8a77f6b3fd8.png)
+
+![image](https://user-images.githubusercontent.com/101658076/173862866-0db89ce0-411e-437e-8640-f6c515fa1956.png)
+
+- Hasil Browser
+
+![image](https://user-images.githubusercontent.com/101658076/173862997-54a110e5-3a58-43cd-afe9-19a23f7d28dd.png)
+
+- Contact
+
+![image](https://user-images.githubusercontent.com/101658076/173863161-db936bca-87b7-445b-8a0f-5b5d05e10185.png)
+
+- Hasil Browser
+
+![image](https://user-images.githubusercontent.com/101658076/173863290-27942d01-144f-4eed-af15-b84a914f70d6.png)
+
+
+
+### *PRAKTIKUM 12: FRAMEWORK LANJUTAN (CRUD)*
+
+### Langkah-langkah Praktikum
+
+### 1. Untuk memulai membuat aplikasi CRUD sederhana, yang perlu disiapkan adalah database server menggunakan MySQL. Pastikan MySQL Server sudah dapat dijalankan melalui XAMPP.
+
+![image](https://user-images.githubusercontent.com/101658076/174344170-7f87798b-2356-4839-9ffa-6b99bd058f73.png)
+
+### 2. Konfigurasi Koneksi Database
+
+Selanjutnya membuat konfigurasi untuk menghubungkan dengan database server. Konfigurasi dapat dilakukan dengan dua cara, yaitu pada file app/config/database.php atau menggunakan file `.env.` Pada praktikum ini kita gunakan konfigurasi pada file .env. Konfigurasi dapat dilakukan dengan cara mengubah beberapa kode pada file `htdocs\lab11_ci\ci4\.env.` Dan hilangkan tanda pagar `#` didepan
+
+![image](https://user-images.githubusercontent.com/101658076/174345046-02a9e764-eb2c-40df-bd10-5b8c93ca71c4.png)
+
+### 3. Membuat Model
+
+Selanjutnya adalah membuat Model untuk memproses data Artikel. Buat file baru pada direktori `app/Models` dengan nama `ArtikelModel.php`
+
+![image](https://user-images.githubusercontent.com/101658076/174345187-94346939-3be0-4928-80eb-0af86417e59b.png)
+
+### 4. Membuat Controller
+
+Buat Controller baru dengan nama `Artikel.php` pada direktori `app/Controllers.`
+
+![image](https://user-images.githubusercontent.com/101658076/174345317-f751a8a2-f0e8-442b-933f-d3b1ea64d054.png)
+
+### 5. Membuat View
+
+Buat direktori baru dengan nama `artikel` pada direktori `app/views`, kemudian buat file baru dengan nama `index.php`
+
+![image](https://user-images.githubusercontent.com/101658076/174345491-0a48103f-b75b-47cf-8185-6382e9750db6.png)
+
+- Selanjutnya buka browser kembali, dengan mengakses url http://localhost:8080/artikel
+
+![image](https://user-images.githubusercontent.com/101658076/174345595-9f28a7ef-b6ae-4b8d-8d74-22282f10abbf.png)
+
+- jika Belum ada data yang diampilkan. Kemudian coba tambahkan beberapa data pada database agar dapat ditampilkan datanya.
+
+![image](https://user-images.githubusercontent.com/101658076/174345691-30f7d631-011a-4959-8fc6-b2c9e8e5294f.png)
+
+- Refresh kembali browser, sehingga akan ditampilkan hasilnya.
+
+![image](https://user-images.githubusercontent.com/101658076/174345763-72cb759d-d856-4a71-ab4c-82be3f803acf.png)
+
+### 6. Membuat Tampilan Detail Artikel
+
+Tampilan pada saat judul berita di klik maka akan diarahkan ke halaman yang berbeda. Tambahkan fungsi baru pada `Controller Artikel` dengan nama `view()`.
+
+![image](https://user-images.githubusercontent.com/101658076/174346098-e826cd04-54d9-49b1-b60b-d4347b709c68.png)
+
+### 7. Membuat View Detail
+
+Buat view baru untuk halaman detail dengan nama `app/views/artikel/detail.php`.
+
+![image](https://user-images.githubusercontent.com/101658076/174346247-2a16dfc3-df56-433a-9ea1-a70a4cb4931e.png)
+
+### 8. Membuat Routing untuk artikel detail
+
+Buka Kembali `file app/config/Routes.php`, kemudian tambahkan routing untuk `artikel detail`.
+
+![image](https://user-images.githubusercontent.com/101658076/174346362-0ef49951-9a9c-4b6e-84ee-6658c83cd8ed.png)
+
+- Kemudian Refresh kembali
+
+![image](https://user-images.githubusercontent.com/101658076/174346426-edd4e2dc-b217-48d9-8bd3-ca4c4828bd98.png)
+
+### 9. Membuat Menu Admin
+
+- Menu admin adalah untuk proses CRUD data artikel. Buat method baru pada `Controller Artikel` dengan nama `admin_index()`.
+
+![image](https://user-images.githubusercontent.com/101658076/174346644-0565ca52-32e7-4c4a-b150-64b45ed6a687.png)
+
+- Selanjutnya buat view untuk tampilan admin dengan nama `admin_index.php`
+
+![image](https://user-images.githubusercontent.com/101658076/174346741-22e8279b-92ba-4cdc-8874-d82cfa136768.png)
+
+- membuat file `admin_header.php`
+
+![image](https://user-images.githubusercontent.com/101658076/174346838-c3c1cc9d-3040-4d46-bba9-edd657ddade3.png)
+
+- Membuat file `admin_footer.php`
+
+![image](https://user-images.githubusercontent.com/101658076/174346976-db18a5b1-277d-4672-9f1a-40d2c2f672bf.png)
+
+- Membuat `admin.css`
+
+![image](https://user-images.githubusercontent.com/101658076/174347133-3c121c30-1859-4daa-be5f-afe9e1f0b3a7.png)
+
+![image](https://user-images.githubusercontent.com/101658076/174347147-a1302b33-a5ae-4fe6-98f2-41eb5d9e6bd9.png)
+
+![image](https://user-images.githubusercontent.com/101658076/174347165-e79720a9-c4b3-4ad2-8f92-effbecfd0ccb.png)
+
+![image](https://user-images.githubusercontent.com/101658076/174347188-e505206f-1574-4813-8bb3-e58b2906690d.png)
+
+- Refresh browser
+
+![image](https://user-images.githubusercontent.com/101658076/174347287-75cc611a-4407-4b13-bd6f-d1007c617d81.png)
+
+- Tambahkan `routing` untuk menu admin seperti berikut:
+
+![image](https://user-images.githubusercontent.com/101658076/174347368-2e3f1b20-a094-48f4-aaf6-f0f0c2bd57d1.png)
+
+- Akses menu admin dengan url http://localhost:8080/admin/artikel
+
+![image](https://user-images.githubusercontent.com/101658076/174347464-3e8e34d5-d496-4709-9250-5f21f57666b4.png)
+
+### 10. Menambah Data Artikel
+
+- Tambahkan `fungsi/method` baru pada `Controller Artikel` dengan nama `add()`.
+
+![image](https://user-images.githubusercontent.com/101658076/174347870-883d4319-7c41-44ac-9e67-1ddf2f4de185.png)
+
+- Kemudian buat view untuk form tambah dengan nama `form_add.php`
+
+![image](https://user-images.githubusercontent.com/101658076/174347999-58b3f757-a781-46be-b637-de25697e72d5.png)
+
+- Setelah itu klik `tambah artikel` maka tampilan nya seperti berikut.
+
+![image](https://user-images.githubusercontent.com/101658076/174348094-cf5afacd-dc49-4f06-a16e-abaf9acf57f2.png)
+
+### 12. Mengubah Data
+
+- Tambahkan fungsi/method baru pada `Controller Artikel` dengan nama `edit()`.
+
+![image](https://user-images.githubusercontent.com/101658076/174348562-acc89494-0cb5-4308-a822-e74a5d6142d0.png)
+
+- Kemudian buat `view` untuk form tambah dengan `nama form_edit.php`
+
+![image](https://user-images.githubusercontent.com/101658076/174348360-1cbb864e-c523-4ead-ac2a-461a5c857de4.png)
+
+- Hasil Browser
+
+![image](https://user-images.githubusercontent.com/101658076/174348514-c94e9969-3222-4eae-bd49-cd0a85993517.png) 
+
+### 13. Menghapus Data
+
+Tambahkan fungsi/method baru pada `Controller Artikel` dengan nama `delete()`.
+
+![image](https://user-images.githubusercontent.com/101658076/174348967-6e87aef9-3725-4a46-8d87-895157db910b.png)
+
+### *Praktikum 13 : FrameWork Lanjutan (Modul Login)*
+
+### 1. Membuat Tabel User
+
+![image](https://user-images.githubusercontent.com/101658076/175776069-7e5c44bf-6365-4d3b-92c4-b1017c277722.png)
+
+### 2. Membuat Model User
+
+- Selanjutnya adalah membuat Model untuk memproses data Login. Buat file baru pada direktori `app/Models` dengan nama `UserModel.php`
+
+![image](https://user-images.githubusercontent.com/101658076/175776150-edb3039b-7e39-447c-b3f9-f6919972faa9.png)
+
+### 3. Membuat Controller User
+
+- Buat Controller baru dengan nama `User.php` pada direktori `app/Controllers`. Kemudian tambahkan `method index()` untuk menampilkan daftar `user`, dan method login() untuk proses `login`.
+
+![image](https://user-images.githubusercontent.com/101658076/175777690-6859cc7d-17d1-4743-ae30-cb57a65498f1.png)
+![image](https://user-images.githubusercontent.com/101658076/175777699-c62dc500-4c7c-4f6e-8122-d4f5f6e43b62.png)
+
+### 4. Membuat View Login
+
+- Buat direktori baru dengan nama `user` pada direktori `app/views`, kemudian buat file baru dengan nama `login.php`.
+
+![image](https://user-images.githubusercontent.com/101658076/175776384-41d2923a-8cdc-4db3-87bc-4039dea29249.png)
+
+### 5. Membuat Database Seeder
+
+- Database seeder digunakan untuk membuat data dummy. Untuk keperluan ujicoba modul login, kita perlu memasukkan data user dan password kedaalam database. Untuk itu buat database seeder untuk tabel user. Buka CLI, kemudian tulis perintah berikut:
+
+![image](https://user-images.githubusercontent.com/101658076/175776479-e4f5db2f-c475-475c-b9ef-036ea8f552f8.png)
+
+- Selanjutnya, buka file `UserSeeder.php` yang berada di lokasi direktori `/app/Database/Seeds/UserSeeder.php` kemudian isi dengan kode berikut:
+
+![image](https://user-images.githubusercontent.com/101658076/175776582-1d950031-df30-4b80-bb62-20168a19be98.png)
+
+- Selanjutnya buka kembali `CLI` dan ketik perintah berikut:
+
+![image](https://user-images.githubusercontent.com/101658076/175776764-7a55423c-9ec8-4228-a42d-d91aaac5b7d1.png)
+
+### 6. Refresh Web
+
+Selanjutnya buka url http://localhost:8080/user/login seperti berikut:
+
+![image](https://user-images.githubusercontent.com/101658076/175777787-09dc36f3-c50d-47ee-9dd6-e8dafd5f3536.png)
+
+### 7. Menambahkan Auth Filter
+
+- Selanjutnya membuat filer untuk halaman admin. Buat file baru dengan nama `Auth.php` pada direktori `app/Filters`.
+
+![image](https://user-images.githubusercontent.com/101658076/175776941-f5c7323f-8254-4ce8-8f03-b1234688a5db.png)
+
+-  Selanjutnya buka file `app/Config/Filters.php` tambahkan kode berikut:
+
+![image](https://user-images.githubusercontent.com/101658076/175777317-f96a931a-88bd-4fa4-b6ba-381d3c994ce6.png)
+
+- Selanjutnya buka file `app/Config/Routes.php` dan sesuaikan kodenya.
+
+![image](https://user-images.githubusercontent.com/101658076/175777389-45bc14b3-0902-49a0-927d-63ca84699124.png)
+
+### 8. Percobaan Akses Menu Admin
+
+- Buka url dengan alamat http://localhost:8080/user/login ketika alamat tersebut diakses maka, akan dimuculkan halaman login.
+
+![image](https://user-images.githubusercontent.com/101658076/175777494-9ea66dc9-02f3-4596-b0ff-b4a446c1540f.png)
+
+### 9. Fungsi Logout
+
+- Tambahkan method logout pada Controller User seperti berikut:
+
+![image](https://user-images.githubusercontent.com/101658076/175777598-3d900084-e451-45d4-9d11-4ec2b0b48cfe.png)
+
+### *Praktikum 14: Pagination dan Pencarian*
+
+### Langkah-langkah Praktikum Persiapan
+
+### 1. Hal pertama yang dilakukan adalah menjalankan Apache & MySQL server di XAMPP seperti berikut.
+
+![image](https://user-images.githubusercontent.com/101658076/176989510-f629eab8-766d-4dc5-bfd4-963cb409d6e9.png)
+
+### 2. Langkah 1 Membuat Pagination
+
+- Pagination merupakan proses yang digunakan untuk membatasi tampilan yang panjang dari data yang banyak pada sebuah website. Fungsi pagination adalah memecah tampilan menjadi beberapa halaman tergantung banyaknya data yang akan ditampilkan pada setiap halaman. Pada Codeigniter 4, fungsi pagination sudah tersedia pada Library sehingga cukup mudah menggunakannya Untuk membuat pagination, buka Kembali Controller Artikel, kemudian modifikasi kode pada method admin_index seperti berikut
+
+![image](https://user-images.githubusercontent.com/101658076/176989588-67740195-bf5a-4ec4-bfca-0a670a6f1d7e.png)
+
+### 3. Kemudian buka file views/artikel/admin_index.php dan tambahkan kode berikut dibawah deklarasi tabel data.
+
+![image](https://user-images.githubusercontent.com/101658076/176989617-66b68489-f9e5-4298-bc63-cec2080539bc.png)
+
+- Selanjutnya buka kembali menu daftar artikel, tambahkan data lagi untuk melihat hasilnya.
+
+![image](https://user-images.githubusercontent.com/101658076/176989641-5542b7b8-6964-4dd9-9210-1b682716fc2e.png)
+
+### 4. Langkah 2 Membuat Pencarian
+
+- Pencarian data digunakan untuk memfilter data. Untuk membuat pencarian data, buka kembali Controller Artikel, pada method admin_index ubah kodenya seperti berikut
+
+![image](https://user-images.githubusercontent.com/101658076/176989710-277ffc2c-fe1f-438d-8f8f-08b3f510b528.png)
+
+### 5. Kemudian buka kembali file views/artikel/admin_index.php dan tambahkan form pencarian sebelum deklarasi tabel seperti berikut:
+
+![image](https://user-images.githubusercontent.com/101658076/176989776-6ff4eb03-eb4e-4881-801b-faf1a1d7de1a.png)
+
+### 6. Kemudian pada link pager ubah seperti berikut.
+
+![image](https://user-images.githubusercontent.com/101658076/176989807-5c4bb1d1-c1f6-4393-babe-9adf9b355966.png)
+
+### 7. Selanjutnya ujicoba dengan membuka kembali halaman admin artikel, masukkan kata kunci tertentu pada form pencarian.
+
+![image](https://user-images.githubusercontent.com/101658076/176989837-c6a3a282-ad07-48ee-99fa-9d94355f03eb.png)
+
+### 8. Langkah 3 Upload Gambar
+
+- Menambahkan fungsi unggah gambar pada tambah artikel. Buka kembali Controller Artikel, sesuaikan kode pada method add seperti berikut:
+
+![image](https://user-images.githubusercontent.com/101658076/176989912-69689b0a-a3f6-427a-b045-8956fd140187.png)
+
+### 9. Kemudian pada file views/artikel/form_add.php tambahkan field input file seperti berikut.
+
+![image](https://user-images.githubusercontent.com/101658076/176989950-5e67941f-a860-471a-ad04-cb6f3dc2beb2.png)
+
+### 10. Kemudian sesuaikan tag form dengan menambahkan ecrypt type seperti berikut.
+
+![image](https://user-images.githubusercontent.com/101658076/176990023-2b7034cb-7d12-4c03-a2ea-bb1b87d2eefc.png)
+
+- Ujicoba file upload dengan mengakses menu tambah artikel.
+
+![image](https://user-images.githubusercontent.com/101658076/176992393-9e139077-04fb-4a76-94ae-3a977e2d9424.png)
